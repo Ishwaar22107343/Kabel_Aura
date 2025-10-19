@@ -1,0 +1,20 @@
+﻿# Python / Backend
+venv/
+__pycache__/
+*.pyc
+.env
+service-account.json
+
+# Node / Frontend
+frontend/node_modules
+frontend/dist
+frontend/.env*
+frontend/.DS_Store
+
+# IDE / OS specific
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
