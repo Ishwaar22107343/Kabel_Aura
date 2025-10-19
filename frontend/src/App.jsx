@@ -24,10 +24,11 @@ function App() {
       setIsLoading(true);
       setError(null);
       try {
+        const API_URL = import.meta.env.VITE_API_BASE_URL;
         const [sprintsRes, profileRes] = await Promise.all([
-          fetch('http://127.0.0.1:8000/api/sprints'),
-          fetch(`http://127.0.0.1:8000/api/users/${CURRENT_USER}/profile`)
-        ]);
+        fetch(`${API_URL}/api/sprints`),
+        fetch(`${API_URL}/api/users/${CURRENT_USER}/profile`)
+      ]);
         if (!sprintsRes.ok || !profileRes.ok) throw new Error('Network response was not ok');
         const sprintsData = await sprintsRes.json();
         const profileData = await profileRes.json();

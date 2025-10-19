@@ -1,8 +1,7 @@
 // --- FILE: frontend/src/components/SubmitResume.jsx ---
 import React, { useState } from 'react';
-import ProgressStepper from './ProgressStepper'; // Import the stepper
+import ProgressStepper from './ProgressStepper';
 
-// SUPERVISOR'S NOTE: It now receives stepStatus
 export default function SubmitResume({ sprint, onSuccess, stepStatus }) {
   const [file, setFile] = useState(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -11,7 +10,6 @@ export default function SubmitResume({ sprint, onSuccess, stepStatus }) {
   const handleFileChange = e => setFile(e.target.files[0]);
 
   const handleSubmit = async (e) => {
-    // ... This function is IDENTICAL to the one I gave you at the top of this message ...
     e.preventDefault();
     if (!file || !sprint) return;
     setIsSubmitting(true);
@@ -21,11 +19,21 @@ export default function SubmitResume({ sprint, onSuccess, stepStatus }) {
     formData.append('username', 'ishwaar');
     formData.append('company', sprint.company);
     formData.append('title', sprint.sprint.name);
+
     try {
-      const response = await fetch(`http://127.0.0.1:8000/api/sprints/${sprint.id}/submit`, { method: 'POST', body: formData });
+      // SUPERVISOR'S NOTE: This is the corrected line.
+      // My placeholder "{ ... }" was the mistake. This is the real code.
+      const API_URL = import.meta.env.VITE_API_BASE_URL;
+      const response = await fetch(`${API_URL}/api/sprints/${sprint.id}/submit`, {
+        method: 'POST',
+        body: formData,
+      });
+
       const result = await response.json();
       if (!response.ok) throw new Error(result.detail || 'An unknown error occurred.');
+      
       if (onSuccess) await onSuccess();
+
     } catch (err) {
       setError(err.message);
       setIsSubmitting(false);
@@ -34,9 +42,7 @@ export default function SubmitResume({ sprint, onSuccess, stepStatus }) {
 
   return (
     <div className="main-content">
-      {/* Show the stepper on this page */}
       <ProgressStepper {...stepStatus} />
-
       <h2 style={{ marginBottom: '32px', marginTop: '48px' }}>Submit Your Work</h2>
       <div style={{ marginBottom: '24px', color: '#888', fontSize: '1rem', background: '#fffbe6', borderRadius: '8px', padding: '12px' }}>
         <strong>Deliverable:</strong> {sprint?.sprint?.details || 'A PDF of your work.'}
