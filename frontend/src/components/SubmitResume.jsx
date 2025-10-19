@@ -1,0 +1,56 @@
+// --- FILE: frontend/src/components/SubmitResume.jsx ---
+import React, { useState } from 'react';
+import ProgressStepper from './ProgressStepper'; // Import the stepper
+
+// SUPERVISOR'S NOTE: It now receives stepStatus
+export default function SubmitResume({ sprint, onSuccess, stepStatus }) {
+  const [file, setFile] = useState(null);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [error, setError] = useState('');
+
+  const handleFileChange = e => setFile(e.target.files[0]);
+
+  const handleSubmit = async (e) => {
+    // ... This function is IDENTICAL to the one I gave you at the top of this message ...
+    e.preventDefault();
+    if (!file || !sprint) return;
+    setIsSubmitting(true);
+    setError('');
+    const formData = new FormData();
+    formData.append('file', file);
+    formData.append('username', 'ishwaar');
+    formData.append('company', sprint.company);
+    formData.append('title', sprint.sprint.name);
+    try {
+      const response = await fetch(`http://127.0.0.1:8000/api/sprints/${sprint.id}/submit`, { method: 'POST', body: formData });
+      const result = await response.json();
+      if (!response.ok) throw new Error(result.detail || 'An unknown error occurred.');
+      if (onSuccess) await onSuccess();
+    } catch (err) {
+      setError(err.message);
+      setIsSubmitting(false);
+    }
+  };
+
+  return (
+    <div className="main-content">
+      {/* Show the stepper on this page */}
+      <ProgressStepper {...stepStatus} />
+
+      <h2 style={{ marginBottom: '32px', marginTop: '48px' }}>Submit Your Work</h2>
+      <div style={{ marginBottom: '24px', color: '#888', fontSize: '1rem', background: '#fffbe6', borderRadius: '8px', padding: '12px' }}>
+        <strong>Deliverable:</strong> {sprint?.sprint?.details || 'A PDF of your work.'}
+      </div>
+      <form onSubmit={handleSubmit}>
+        <label style={{ display: 'block', marginBottom: '12px' }}>
+          Upload your PDF:
+          <input type="file" accept="application/pdf" onChange={handleFileChange} style={{ marginLeft: '12px' }} required />
+        </label>
+        <button type="submit" className="button-primary" disabled={!file || isSubmitting}>
+          {isSubmitting ? 'Verifying...' : 'Submit and Get Verified'}
+        </button>
+        {error && <div style={{ color: 'red', marginTop: '12px' }}>Error: {error}</div>}
+      </form>
+    </div>
+  );
+}

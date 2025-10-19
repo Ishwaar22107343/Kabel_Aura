@@ -1,0 +1,266 @@
+:root {
+  --kabel-orange: #FF9800;
+  --kabel-orange-dark: #e68900;
+  --kabel-black: #222222;
+  --kabel-white: #FFFFFF;
+  --kabel-grey: #ececec;
+  --font-main: 'Montserrat', Arial, sans-serif;
+}
+
+body, #root {
+  background: var(--kabel-white);
+  color: var(--kabel-black);
+  font-family: var(--font-main);
+  margin: 0;
+  min-height: 100vh;
+}
+
+.sidebar {
+  background: var(--kabel-orange);
+  color: var(--kabel-white);
+  width: 220px;
+  min-height: 100vh;
+  border-right: 2px solid #eee;
+  padding: 32px 24px 0 24px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 100;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.sidebar-nav {
+  width: 100%;
+}
+
+.sidebar-nav-item {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 14px 18px;
+  font-weight: 500;
+  font-size: 1.1rem;
+  cursor: pointer;
+  border-radius: 8px;
+  margin-bottom: 12px;
+  background: transparent;
+  color: var(--kabel-white);
+  border: none;
+  text-align: left;
+  display: flex;
+  align-items: center;
+  transition: background 0.2s, color 0.2s;
+  font-family: var(--font-main);
+}
+
+.sidebar-nav-item.active {
+  background: var(--kabel-orange-dark);
+  color: var(--kabel-white);
+  font-weight: 700;
+}
+
+.sidebar-auth-btn {
+  position: absolute;
+  left: 24px;
+  bottom: 70px;
+  width: calc(100% - 48px); /* Sidebar padding */
+  background: #fff;
+  color: var(--kabel-orange);
+  border: none;
+  border-radius: 8px;
+  padding: 12px 0;
+  font-weight: 700;
+  font-size: 1.05rem;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(255,152,0,0.10);
+}
+
+.main-content {
+  margin-left: 260px;
+  padding: 48px 48px 32px 48px;
+  max-width: 900px;
+}
+
+.card {
+  background: var(--kabel-grey);
+  border-radius: 16px;
+  padding: 32px;
+  margin-bottom: 32px;
+  box-shadow: 0 2px 8px rgba(34,34,34,0.03);
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+.button-primary {
+  background: #FF9800; /* Kabel orange */
+  color: #fff;
+  font-weight: 700;
+  padding: 12px 28px;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  cursor: pointer;
+  margin-top: 16px;
+  transition: background 0.2s;
+  box-shadow: 0 2px 8px rgba(255,152,0,0.12);
+}
+
+.button-primary:hover {
+  background: #e68900;
+}
+
+.tag {
+  background: #FF9800;
+  color: #fff;
+  border-radius: 6px;
+  padding: 2px 8px;
+  margin-right: 8px;
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+/* Simple modal styles */
+.modal-backdrop {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(0,0,0,0.25);
+  z-index: 200;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.modal-content {
+  background: #fff;
+  border-radius: 12px;
+  padding: 32px;
+  width: 340px;
+  box-shadow: 0 4px 32px rgba(0,0,0,0.12);
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+.modal-content h3 {
+  margin: 0 0 12px 0;
+  font-size: 1.4rem;
+  text-align: center;
+}
+.modal-content input {
+  font-size: 1rem;
+  padding: 8px;
+  border-radius: 6px;
+  border: 1px solid #ddd;
+  margin-bottom: 10px;
+}
+.modal-actions {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+}
+
+/* --- NEW STYLES FOR THE INVITATION SCREEN --- */
+.back-button {
+  background: none;
+  border: none;
+  color: var(--kabel-orange);
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  margin-bottom: 24px;
+}
+
+.job-invitation-layout {
+  display: flex;
+  gap: 48px;
+  align-items: center;
+  margin-top: 32px;
+}
+
+.clarity-score-column {
+  flex-basis: 30%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 24px;
+  background: #f9f9f9;
+  border-radius: 16px;
+}
+
+.invitation-header {
+  font-size: 1.8rem;
+  font-weight: 700;
+  margin: 0 0 24px 0;
+}
+
+.clarity-subtext {
+  font-size: 0.85rem;
+  color: #888;
+  margin-top: 16px;
+}
+
+.job-details-column {
+  flex-basis: 70%;
+}
+
+.job-title-header {
+  font-size: 2.5rem;
+  margin: 4px 0 24px 0;
+}
+
+.invitation-paragraph {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  color: #555;
+}
+
+.button-accept {
+  width: 100%;
+  padding: 16px;
+  font-size: 1.2rem;
+  margin-top: 32px;
+}
+
+.secondary-action {
+  display: block;
+  text-align: center;
+  margin-top: 16px;
+  color: #888;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+/* Make the job cards clickable */
+.card {
+  cursor: pointer;
+  transition: transform 0.2s ease-out, box-shadow 0.2s ease-out;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 16px rgba(34,34,34,0.08);
+}
+
+.sidebar-logo {
+  font-size: 2rem;
+  font-weight: 800;
+  text-align: center;
+  margin-bottom: 48px;
+  color: white;
+  letter-spacing: 2px;
+}
+
+.tilt-card {
+  /* This creates the 3D space for children to exist in */
+  transform-style: preserve-3d;
+  /* This adds a smooth transition when the mouse leaves */
+  transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.tilt-card > * {
+  /* This pushes the content of the card slightly forward in 3D space
+     so it doesn't look flat against the tilting plane. */
+  transform: translateZ(20px);
+}
