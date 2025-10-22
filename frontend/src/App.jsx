@@ -1,13 +1,12 @@
-// --- FILE: frontend/src/App.jsx ---
 import React, { useState, useEffect } from 'react';
 import Sidebar from './components/Sidebar';
 import SubmitResume from './components/SubmitResume';
 import JobListings from './components/JobListings';
-import InvitationScreen from './components/InvitationScreen'; // Our new star component
-import SprintInvitation from './components/SprintInvitation'; // This is now the "Briefing"
+import InvitationScreen from './components/InvitationScreen'; 
+import SprintInvitation from './components/SprintInvitation'; 
 import Profile from './components/Profile';
 
-// SUPERVISOR'S NOTE: Using your user, as requested. No more Alex Dragon.
+
 const CURRENT_USER = 'ishwaar';
 
 function App() {
@@ -20,7 +19,6 @@ function App() {
 
   useEffect(() => {
     const fetchInitialData = async () => {
-      //... (This part is the same as before, no changes needed)
       setIsLoading(true);
       setError(null);
       try {
@@ -42,8 +40,6 @@ function App() {
     };
     fetchInitialData();
   }, []);
-
-  // --- NEW, CORRECTED JOURNEY FUNCTIONS ---
 
   const handleSelectJob = (job) => {
     setSelectedSprint(job);
@@ -69,7 +65,6 @@ function App() {
       const updatedProfile = await response.json();
       setProfile(updatedProfile);
       
-      // We now explicitly set the scene to 'profile' AFTER the data is loaded.
       setActiveScene('profile'); 
 
     } catch (error) {
@@ -88,7 +83,6 @@ function App() {
     if (isLoading) return <div className="main-content"><h2>Loading Aura...</h2></div>;
     if (error) return <div className="main-content" style={{ color: 'red' }}><h2>Error: {error}</h2><p>Please ensure your backend server is running.</p></div>;
 
-    // SUPERVISOR'S NOTE: This logic now determines the stepper's state.
     const sceneOrder = ['jobs', 'invitation', 'briefing', 'submit', 'profile'];
     const currentSceneIndex = sceneOrder.indexOf(activeScene);
     const stepStatus = {

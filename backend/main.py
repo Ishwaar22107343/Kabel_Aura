@@ -1,4 +1,3 @@
-# --- FILE: backend/main.py ---
 from fastapi import FastAPI, UploadFile, Form, HTTPException
 from fastapi.responses import JSONResponse
 from fastapi.middleware.cors import CORSMiddleware
@@ -8,7 +7,6 @@ import re
 
 app = FastAPI()
 
-# SUPERVISOR'S NOTE: This is the mandatory CORS middleware. It must stay.
 origins = [
     "http://localhost:5173",
     "http://localhost:3000",
@@ -16,7 +14,7 @@ origins = [
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"], # Allows any website to connect
+    allow_origins=["*"],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -54,14 +52,12 @@ async def submit_sprint(
     username: str = Form(...),
     company: str = Form(...),
     title: str = Form(...),
-    file: UploadFile = Form(...) # The file is received but will not be stored.
+    file: UploadFile = Form(...)
 ):
     # We still validate that a PDF was sent to make the flow feel real.
     if not file.filename.lower().endswith(".pdf"):
         raise HTTPException(status_code=400, detail="Only PDF files are allowed")
 
-    # SUPERVISOR'S NOTE: Reverting to your original "fake" path generation.
-    # No actual upload happens.
     def clean_string(s):
         return re.sub(r"[^\w\- ]", "", s).replace(" ", "_")
 
@@ -69,7 +65,7 @@ async def submit_sprint(
     safe_title = clean_string(title)
     safe_username = clean_string(username)
 
-    # This is now a fake path, not a real URL.
+
     fake_file_path = f"submissions/{safe_company}/{safe_title}/{safe_username}.pdf"
     doc_id = f"{sprint_id}_{safe_username}"
     
@@ -78,7 +74,7 @@ async def submit_sprint(
         "company": company,
         "title": title,
         "sprint_id": sprint_id,
-        "file_url": fake_file_path, # Using the fake path
+        "file_url": fake_file_path, 
         "submitted_time": datetime.utcnow().isoformat()
     }
     db.collection("submissions").document(doc_id).set(submission_data)

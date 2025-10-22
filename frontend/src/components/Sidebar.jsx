@@ -1,7 +1,5 @@
-// --- FILE: frontend/src/components/Sidebar.jsx ---
 import React from 'react';
 
-// SUPERVISOR'S NOTE: A simplified, focused navigation.
 const navItems = [
   { key: 'jobs', label: 'Job Offers' },
   { key: 'profile', label: 'My Profile' },

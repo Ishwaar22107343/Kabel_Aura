@@ -1,14 +1,11 @@
-// --- FILE: frontend/src/components/ProgressStepper.jsx ---
 import React from 'react';
 
-// This is the correct story.
 const steps = [
   { id: 'accept', label: 'Accept Invitation' },
   { id: 'submit', label: 'Submit Work' },
   { id: 'verify', label: 'Get Verified' },
 ];
 
-// This component is now "dumb". It just displays the state it's given.
 export default function ProgressStepper({ acceptComplete, submitComplete, verifyComplete }) {
   const completions = [acceptComplete, submitComplete, verifyComplete];
   

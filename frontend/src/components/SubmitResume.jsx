@@ -1,4 +1,3 @@
-// --- FILE: frontend/src/components/SubmitResume.jsx ---
 import React, { useState } from 'react';
 import ProgressStepper from './ProgressStepper';
 
@@ -21,8 +20,6 @@ export default function SubmitResume({ sprint, onSuccess, stepStatus }) {
     formData.append('title', sprint.sprint.name);
 
     try {
-      // SUPERVISOR'S NOTE: This is the corrected line.
-      // My placeholder "{ ... }" was the mistake. This is the real code.
       const API_URL = import.meta.env.VITE_API_BASE_URL;
       const response = await fetch(`${API_URL}/api/sprints/${sprint.id}/submit`, {
         method: 'POST',

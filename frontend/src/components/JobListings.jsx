@@ -1,4 +1,3 @@
-// --- FILE: frontend/src/components/JobListings.jsx ---
 import React from 'react';
 
 // This component's ONLY job is to show the list of available jobs.

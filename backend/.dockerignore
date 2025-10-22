@@ -1,4 +1,3 @@
-# --- FILE: backend/.dockerignore ---
 venv
 __pycache__
 *.pyc

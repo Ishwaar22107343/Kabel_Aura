@@ -1,4 +1,3 @@
-// --- FILE: frontend/src/components/Profile.jsx ---
 import React from 'react';
 import ProgressStepper from './ProgressStepper';
 import { useTilt } from '../hooks/useTilt';
@@ -16,7 +15,6 @@ const SkillBadge = ({ skill }) => {
   );
 };
 
-// SUPERVISOR'S NOTE: It now receives stepStatus instead of activeScene
 export default function Profile({ profile, stepStatus }) {
   if (!profile) return <div className="main-content"><h2>Loading Profile...</h2></div>;
 

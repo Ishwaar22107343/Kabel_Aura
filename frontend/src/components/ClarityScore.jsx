@@ -1,11 +1,9 @@
-// --- FILE: frontend/src/components/ClarityScore.jsx ---
 import React, { useState, useEffect } from 'react';
 
-// SUPERVISOR'S NOTE: Size increased for more impact, as requested.
 const ClarityScore = ({ score, reason }) => {
-  const [offset, setOffset] = useState(440); // Start with the circle empty
+  const [offset, setOffset] = useState(440); 
 
-  const size = 160; // BIGGER
+  const size = 160;
   const strokeWidth = 12;
   const center = size / 2;
   const radius = size / 2 - strokeWidth / 2;
@@ -20,7 +18,7 @@ const ClarityScore = ({ score, reason }) => {
   const circleStyle = {
     strokeDasharray: circumference,
     strokeDashoffset: offset,
-    transition: 'stroke-dashoffset 1.2s cubic-bezier(0.65, 0, 0.35, 1)', // Smoother animation
+    transition: 'stroke-dashoffset 1.2s cubic-bezier(0.65, 0, 0.35, 1)',
   };
 
   return (
@@ -34,7 +32,7 @@ const ClarityScore = ({ score, reason }) => {
           {score}%
         </div>
       </div>
-      {/* SUPERVISOR'S NOTE: Displaying the dynamic reason from Firestore */}
+      {/*Displaying the dynamic reason from Firestore */}
       <p className="clarity-subtext">Clarity Score based on {reason}.</p>
     </div>
   );

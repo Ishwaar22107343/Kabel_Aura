@@ -1,12 +1,7 @@
-# --- FILE: backend/config.py (FINAL DEPLOYMENT VERSION) ---
 import os
 import json
 from google.oauth2 import service_account
 from google.cloud import firestore
-
-# SUPERVISOR'S NOTE: This is the deployment-ready logic.
-# It checks for the cloud environment variable first.
-# If it's not in the cloud, it falls back to your local file.
 
 # Check if running in Google Cloud Run
 if "GOOGLE_APPLICATION_CREDENTIALS_JSON" in os.environ:

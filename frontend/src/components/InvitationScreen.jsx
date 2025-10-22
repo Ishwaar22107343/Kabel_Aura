@@ -1,4 +1,3 @@
-// --- FILE: frontend/src/components/InvitationScreen.jsx ---
 import React from 'react';
 import ClarityScore from './ClarityScore';
 
@@ -11,7 +10,7 @@ export default function InvitationScreen({ job, onAccept, onDecline }) {
       <div className="job-invitation-layout">
         <div className="clarity-score-column">
           <h1 className="invitation-header">You're a strong match.</h1>
-          {/* SUPERVISOR'S NOTE: Passing the dynamic reason from the job object */}
+          {/* Passing the dynamic reason from the job object */}
           <ClarityScore score={78} reason={job.clarityReason} />
         </div>
         <div className="job-details-column">

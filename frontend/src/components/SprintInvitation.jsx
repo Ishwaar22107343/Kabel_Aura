@@ -1,4 +1,3 @@
-// --- FILE: frontend/src/components/SprintInvitation.jsx ---
 import React from 'react';
 
 export default function SprintInvitation({ sprint, onAccept }) {
