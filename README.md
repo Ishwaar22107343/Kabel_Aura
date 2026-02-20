@@ -2,8 +2,6 @@
 
 **Aura lets students prove their skills via short, employer-designed “Skill Sprints.” Completing one equals a verified badge and a cleared first-round interview.**
 
-![Kabel Aura Screenshot](https://via.placeholder.com/800x400.png?text=App+Screenshot+Here)
-
 ## Table of Contents
 
 - [About The Project](#about-the-project)
